@@ -1,14 +1,50 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="header">
     <ion-title>
-      Ionic Blank
+      TodoApp
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list>
+        <ion-list-header>
+          Todos
+        </ion-list-header>
+
+        <!-- <ion-item>
+          1.- Task1  
+          <button ion-button item-right color="danger" clear icon-only>
+            <ion-icon name='trash' is-active="false"></ion-icon>
+          </button>
+        </ion-item> -->
+
+        <ion-item *ngFor="let i of tasks; let ind = index;">
+          {{ind + 1}}.- {{i.task}}
+          <button ion-button item-right color="danger" (click)="removeTodo(i)" clear icon-only>
+            <ion-icon name='trash' is-active="false"></ion-icon>
+          </button>
+        </ion-item>
+
+    </ion-list>
+
 </ion-content>
+<ion-footer padding>
+
+    <!-- <ion-item>
+        <ion-label color="primary" floating>Floating Label</ion-label>
+        <ion-input></ion-input>
+        <button ion-fab item-right color="primary">
+            <ion-icon name="md-add"></ion-icon>
+        </button>
+    </ion-item> -->
+
+    <form [formGroup]="form" (ngSubmit)="addTodo()">
+    <ion-item>
+      <ion-input type="text" formControlName="task" placeholder="Enter new task..."></ion-input>
+      <button ion-button item-end color="primary" type="submit" clear icon-only>
+        <ion-icon name='paper-plane' is-active="false"></ion-icon>
+      </button>
+    </ion-item>
+  </form>
+</ion-footer>
