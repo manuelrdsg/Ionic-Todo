@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
-import { Http } from '@angular/Http';
 import 'rxjs/add/operator/map';
+import { DataFinder } from '../../providers/datafinder';
 
 const STORAGE_KEY = 'TASKS';
-declare var require: any
 
 @Component({
   selector: 'page-home',
@@ -14,13 +13,13 @@ declare var require: any
 })
 
 export class HomePage {
-
+  @ViewChild('content') content:any;
 
   tasks: any[];
   private form : FormGroup;
   
 
-  constructor(public navCtrl: NavController,  private formBuilder: FormBuilder, private storage: Storage) {
+  constructor(public navCtrl: NavController,  private formBuilder: FormBuilder, private storage: Storage, private dataFinder : DataFinder) {
     this.form = this.formBuilder.group({
       task: ['', Validators.required]
     });
@@ -28,34 +27,30 @@ export class HomePage {
   
   ionViewDidLoad() {
     this.getTasks();
-    console.log(this.tasks)
-    //this.storage.clear();
-   // this._loadMockData("100");
+    this.storage.clear();
+    this._loadMockData("100");
   }
 
-//   _loadMockData(file) {
+  async _loadMockData(file) {
 
-//     var jsonfile;
+    if(file === "100")
+      await this.dataFinder.getJSONDataAsync("./assets/db/MOCK_DATA_100.json").then(data => {
+        this.tasks = data;
+      });
+    else if(file === "500")
+      await this.dataFinder.getJSONDataAsync("./assets/db/MOCK_DATA_500.json").then(data => {
+        this.tasks = data;
+      });
+    else if(file === "1000")
+      await this.dataFinder.getJSONDataAsync("./assets/db/MOCK_DATA_1000.json").then(data => {
+        this.tasks = data;
+      });
+    else
+      return;
 
-//     this.http.get('file:///www/assets/db/MOCK_DATA_500.json').map(res => res.json()).subscribe(data => {
-//       jsonfile = data;
-//   });
-
-
-//     if(file === "100")
-//        jsonfile = require('./test.json')
-//     else if(file === "500")
-//       jsonfile = fs.readFile('./db/MOCK_DATA_500.json')
-//     else if(file === "1000")
-//       jsonfile = fs.readFile('./db/MOCK_DATA_1000.json')
-//     else
-//       return;
-  
-//     //this.tasks = jsonfile;
-//     console.log(jsonfile)
-//     //this.updateStorage();
+    this.updateStorage();
     
-// }
+}
 
   getTasks() {
     return this.storage.get(STORAGE_KEY).then( (tasks) => this.tasks = tasks)
@@ -77,15 +72,15 @@ export class HomePage {
           this.tasks = [];
         this.tasks.push(task_name);
         this.updateStorage();
-        console.log(this.tasks)
         this.form.reset();
       }
     }
 
+    this.content.scrollToBottom(300);
+
   }
 
   removeTodo(obj) {
-    console.log(obj)
     var index = this.tasks.indexOf(obj);
     this.tasks.splice(index, 1);
     this.updateStorage();

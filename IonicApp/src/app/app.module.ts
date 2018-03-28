@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { DataFinder } from '../providers/datafinder';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,9 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    HttpClientModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    HttpModule,
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
@@ -30,8 +31,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    HttpClientModule, 
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataFinder
   ]
 })
 export class AppModule {}
