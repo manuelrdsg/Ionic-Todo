@@ -26,9 +26,9 @@ export class HomePage {
   }
   
   ionViewDidLoad() {
-    this.getTasks();
-    this.storage.clear();
-    this._loadMockData("100");
+    //this.getTasks();
+    //this.storage.clear();
+    this._loadMockData("500");
   }
 
   async _loadMockData(file) {
@@ -50,6 +50,15 @@ export class HomePage {
 
     this.updateStorage();
     
+}
+
+doRefresh(refresher) {
+
+  this.getTasks();
+
+  setTimeout(() => {
+    refresher.complete();
+  }, 2000);
 }
 
   getTasks() {
