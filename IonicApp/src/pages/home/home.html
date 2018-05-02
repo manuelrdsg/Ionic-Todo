@@ -21,15 +21,8 @@
           Todos
         </ion-list-header>
 
-        <!-- <ion-item>
-          1.- Task1  
-          <button ion-button item-right color="danger" clear icon-only>
-            <ion-icon name='trash' is-active="false"></ion-icon>
-          </button>
-        </ion-item> -->
-
         <ion-item *ngFor="let i of tasks; let ind = index;">
-          {{ind + 1}}.- {{i.task}}
+          <a style="font-weight: bold">{{ind + 1}}.- </a>{{i.task}}
           <button ion-button item-right color="danger" (click)="removeTodo(i)" clear icon-only>
             <ion-icon name='trash' is-active="false"></ion-icon>
           </button>
@@ -39,15 +32,6 @@
 
 </ion-content>
 <ion-footer padding>
-
-    <!-- <ion-item>
-        <ion-label color="primary" floating>Floating Label</ion-label>
-        <ion-input></ion-input>
-        <button ion-fab item-right color="primary">
-            <ion-icon name="md-add"></ion-icon>
-        </button>
-    </ion-item> -->
-
     <form [formGroup]="form" (ngSubmit)="addTodo()">
     <ion-item>
       <ion-input id="input" type="text" formControlName="task" placeholder="Enter new task..."></ion-input>
@@ -56,4 +40,11 @@
       </button>
     </ion-item>
   </form>
+  <button ion-button item-end color="danger" type="submit" (click)="sendTimes()" clear icon-only>
+    <ion-icon name='cloud-upload' is-active="false"></ion-icon>
+  </button>
+  <a style="font-weight: bold; font-size: 20">DEBUG</a>
+  <button ion-button item-end color="danger" type="submit" (click)="_loadMockData('500')" clear icon-only>
+    <ion-icon name='refresh' is-active="false"></ion-icon>
+  </button>
 </ion-footer>

@@ -1,0 +1,7 @@
+organization=manuelrdsg-github
+projectKey=tfg-ionic
+serverUrl=https://sonarcloud.io
+serverVersion=7.1.1.10702
+dashboardUrl=https://sonarcloud.io/dashboard/index/tfg-ionic
+ceTaskId=AWMgwz_QXhRh5gha-KYZ
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWMgwz_QXhRh5gha-KYZ
