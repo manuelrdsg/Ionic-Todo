@@ -1,19 +1,14 @@
-# Ionic TodoApp
+# Ionic App - Cross-Platform Performance study
 
-This project is a benchmark TodoApp developed using Ionic.
+This project is a benchmark applcation developed using Ionic. This application was developed in order to meassure execution times and code quality metrics in it. The result of this meassures were used in a comparative study between cross-platform frameworks.
 
 <img src="http://res.cloudinary.com/manuelrdsg/image/upload/v1521834707/TFG/Screen_Shot_2018-03-23_at_19.50.33.png" width="230" height="400" />
 
-## Installation & Use
+The application can manage simple text tasks. You can add, delete, update the task list and load a JSON with a set of tasks.
 
-Clone this repo and run the following commands
-
-```
-cd IonicApp
-npm install
-ionic serve
-```
+More info about the written paper can be found [here](https://manuelrdsg.github.io/page/projects/)
 
 ## Disclaimer
 
-This project is not finished. Please, do not hesitate to open a pull request if you find a bug or believe that the code can be improved in some way. Thanks!
+Please note that this app was developed specifically as a benchmark application and therefore does not contain a middleware for managing network calls, and other essential features. 
+
